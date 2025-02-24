@@ -9,11 +9,7 @@
     <title>Pokedex</title>
 
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='24px' height='24px' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' color='%23000000'%3E%3Cpath d='M3 3.6V20.4C3 20.7314 3.26863 21 3.6 21H20.4C20.7314 21 21 20.7314 21 20.4V3.6C21 3.26863 20.7314 3 20.4 3H3.6C3.26863 3 3 3.26863 3 3.6Z' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M6 6L6 16' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M10 6V9' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M14 6V13' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3Cpath d='M18 6V11' stroke='%23000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3C/path%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/svg+xml" href="./assets/icons/pokeball.svg" />
 
     <!-- Font Awesome -->
     <link
@@ -50,19 +46,33 @@
     <main
       id="app"
       class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6"
-    >
-      <div class="modal" id="pkm_detail">
-        <div class="modal-background"></div>
+    ></main>
+    <script type="module" src="./assets/js/index.js"></script>
+  </body>
+
+  <template id="pokemon_template">
+    <div class="card mb-6 has-text-centered pt-4 my-6">
+      <a>
+        <div class="card-image">
+          <img class="pkm_img" />
+        </div>
+        <div class="card-content">
+          <p class="pokemon_name"></p>
+        </div>
+      </a>
+
+      <div class="modal" slot="pkm_detail">
+        <div class="modal-background close"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <h2 class="modal-card-title pkm_name">Bulbizarre</h2>
+            <h2 class="modal-card-title pkm_name"></h2>
             <i class="fa fa-window-close close"></i>
           </header>
           <section
             class="modal-card-body is-flex is-flex-direction-row is-align-content-center is-align-items-center"
           >
             <div class="mr-4">
-              <img src="./assets/img/1.webp" class="pkm_img_modal" />
+              <img class="pkm_img_modal" />
             </div>
             <div class="modal-card-content pkm_stats_modal">
               <h4 class="mb-4">Statistiques</h4>
@@ -73,7 +83,7 @@
                   <div class="pokemon-hp ml-1"></div>
                 </div>
                 <progress
-                  class="progress is-danger"
+                  class="progress is-danger pv_progress"
                   value="50"
                   max="255"
                 ></progress>
@@ -84,7 +94,7 @@
                   <div class="pokemon-atk ml-1"></div>
                 </div>
                 <progress
-                  class="progress is-danger"
+                  class="progress is-danger atk_progress"
                   value="70"
                   max="255"
                 ></progress>
@@ -95,7 +105,7 @@
                   <div class="pokemon-def ml-1"></div>
                 </div>
                 <progress
-                  class="progress is-danger"
+                  class="progress is-danger def_progress"
                   value="90"
                   max="255"
                 ></progress>
@@ -106,7 +116,7 @@
                   <div class="pokemon-atk_spe ml-1"></div>
                 </div>
                 <progress
-                  class="progress is-danger"
+                  class="progress is-danger atk-spe_progress"
                   value="110"
                   max="255"
                 ></progress>
@@ -117,7 +127,7 @@
                   <div class="pokemon-def_spe ml-1"></div>
                 </div>
                 <progress
-                  class="progress is-danger"
+                  class="progress is-danger def-spe_progress"
                   value="130"
                   max="255"
                 ></progress>
@@ -128,7 +138,7 @@
                   <div class="pokemon-speed ml-1"></div>
                 </div>
                 <progress
-                  class="progress is-danger"
+                  class="progress is-danger spd_progress"
                   value="150"
                   max="255"
                 ></progress>
@@ -143,7 +153,9 @@
                   <option value="2">Team 2</option>
                   <option value="3">Team 3</option>
                 </select>
-                <button class="button btn_add_team">Add To Team</button>
+                <button type="submit" class="button btn_add_team">
+                  Add To Team
+                </button>
               </form>
             </div>
             <div class="buttons">
@@ -152,20 +164,6 @@
           </footer>
         </div>
       </div>
-    </main>
-    <script type="module" src="./assets/js/index.js"></script>
-  </body>
-
-  <template id="pokemon_template">
-    <div class="card mb-6 has-text-centered pt-4 my-6">
-      <a>
-        <div class="card-image">
-          <img class="pkm_img" />
-        </div>
-        <div class="card-content">
-          <p class="pokemon_name"></p>
-        </div>
-      </a>
     </div>
   </template>
 </html>
