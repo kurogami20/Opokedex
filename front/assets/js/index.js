@@ -3,7 +3,7 @@ import type from "./types.js";
 
 const menu = {
   init() {
-    pokeHandler.init(), menu.home(), menu.type();
+    type.init(), menu.home(), menu.type();
   },
 
   erase() {
@@ -22,7 +22,7 @@ const menu = {
     homeElm.addEventListener("click", toType);
     function toType() {
       menu.erase();
-      type.display();
+      type.init();
     }
   },
 };
