@@ -37,7 +37,27 @@ const type = {
         const id = btn.dataset.id;
         const typeById = await typeFetcher.byIdType(id);
         console.log(typeById);
+        const modale = document.querySelector('[slot="type_detail"]');
+        const title = modale.querySelector(".type_name");
+        title.textContent = `${typeById.name}`;
+        const list = modale.querySelector(".list_poke_type");
+        const pokemon = typeById.pokemon;
+        pokemon.forEach((pok) => {
+          const liElm = document.createElement("li");
+          liElm.textContent = `${pok.name}`;
+          list.appendChild(liElm);
+        });
+        modale.classList.add("is-active");
       }
+
+      const closeElm = document.querySelectorAll(".close");
+      closeElm.forEach((c) => {
+        c.addEventListener("click", () => {
+          document
+            .querySelector('[slot="type_detail"]')
+            .classList.remove("is-active");
+        });
+      });
     }
     detail();
   },

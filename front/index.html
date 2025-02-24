@@ -169,4 +169,18 @@
   <template id="type_template">
     <button type="submit" class="button cell type_btn"></button>
   </template>
+
+  <div class="modal" slot="type_detail">
+    <div class="modal-background close"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <h2 class="modal-card-title type_name"></h2>
+        <i class="fa fa-window-close close"></i>
+      </header>
+      <main class="modal-card-body">
+        <h3 class="mb-4 title">On retrouve</h3>
+        <ul class="ul list_poke_type"></ul>
+      </main>
+    </div>
+  </div>
 </html>
