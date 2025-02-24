@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch index.js",
-    "create_db": "node /var/www/html/sigurd/S14/E01-opokedex-kurogami20/back/data/createDB.js"
+    "create_db": "node /var/www/html/sigurd/S14/E01-opokedex-kurogami20/back/data/createDB.js",
+    "seed_db": "node /var/www/html/sigurd/S14/E01-opokedex-kurogami20/back/data/seedDB.js"
   },
   "keywords": [],
   "author": "",
