@@ -2,7 +2,9 @@ import { Pokemon } from "../models/index.js";
 
 const pokemon = {
   async getAll(req, res) {
-    const poke = await Pokemon.findAll();
+    const poke = await Pokemon.findAll({
+      include: [{ association: "type" }, { association: "team" }],
+    });
     res.json(poke);
   },
   async getById(req, res) {
