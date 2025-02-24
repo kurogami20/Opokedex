@@ -51,6 +51,67 @@
       id="app"
       class="container is-flex is-align-item-center is-flex-wrap-wrap is-justify-content-space-evenly my-6"
     >
+      <div class="card mb-6 has-text-centered pt-4 my-6">
+        <a>
+          <div class="card-image">
+            <img class="pkm_img" src="./assets/img/1.webp" />
+          </div>
+          <div class="card-content">
+            <p>Bulbizarre</p>
+          </div>
+        </a>
+      </div>
+      <div class="card mb-6 has-text-centered pt-4 my-6">
+        <a>
+          <div class="card-image">
+            <img class="pkm_img" src="./assets/img/1.webp" />
+          </div>
+          <div class="card-content">
+            <p>Bulbizarre</p>
+          </div>
+        </a>
+      </div>
+      <div class="card mb-6 has-text-centered pt-4 my-6">
+        <a>
+          <div class="card-image">
+            <img class="pkm_img" src="./assets/img/1.webp" />
+          </div>
+          <div class="card-content">
+            <p>Bulbizarre</p>
+          </div>
+        </a>
+      </div>
+      <div class="card mb-6 has-text-centered pt-4 my-6">
+        <a>
+          <div class="card-image">
+            <img class="pkm_img" src="./assets/img/1.webp" />
+          </div>
+          <div class="card-content">
+            <p>Bulbizarre</p>
+          </div>
+        </a>
+      </div>
+      <div class="card mb-6 has-text-centered pt-4 my-6">
+        <a>
+          <div class="card-image">
+            <img class="pkm_img" src="./assets/img/1.webp" />
+          </div>
+          <div class="card-content">
+            <p>Bulbizarre</p>
+          </div>
+        </a>
+      </div>
+      <div class="card mb-6 has-text-centered pt-4 my-6">
+        <a>
+          <div class="card-image">
+            <img class="pkm_img" src="./assets/img/1.webp" />
+          </div>
+          <div class="card-content">
+            <p>Bulbizarre</p>
+          </div>
+        </a>
+      </div>
+
       <div class="modal" id="pkm_detail">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -151,21 +212,25 @@
             </div>
           </footer>
         </div>
+
+        <script>
+          // Sample code, do not use as it is, adapt it to your needs
+          const pokemonCards = document.querySelectorAll(".card");
+          const pkmDetail = document.getElementById("pkm_detail");
+          const pkmDetailClose = pkmDetail.querySelector(".close");
+
+          pokemonCards.forEach((card) => {
+            card.addEventListener("click", () => {
+              pkmDetail.classList.add("is-active");
+            });
+          });
+
+          pkmDetailClose.addEventListener("click", () => {
+            pkmDetail.classList.remove("is-active");
+          });
+        </script>
       </div>
     </main>
-    <script type="module" src="./assets/js/index.js"></script>
-  </body>
 
-  <template id="pokemon_template">
-    <div class="card mb-6 has-text-centered pt-4 my-6">
-      <a>
-        <div class="card-image">
-          <img class="pkm_img" />
-        </div>
-        <div class="card-content">
-          <p class="pokemon_name"></p>
-        </div>
-      </a>
-    </div>
-  </template>
+  </body>
 </html>
