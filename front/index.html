@@ -80,6 +80,35 @@
       </section>
     </template>
 
+<template id="team_add_template">
+  <form action=""  class="form_add_team">
+    <article class="message is-danger is-hidden errorAddTeam">
+  <div class="message-header">
+    <p>Une équipe doit avoir un nom</p>
+  </article>
+    <div class="field">
+  <label class="label">Nom de l'équipe</label>
+  <div class="control">
+    <input class="input" type="text" name="name">
+  </div>
+  <div class="field">
+  <label class="label">Description</label>
+  <div class="control">
+    <textarea class="textarea" name="description" placeholder="Les meilleurs"></textarea>
+  </div>
+</div>
+<div class="field is-grouped">
+  <div class="control">
+    <button type="submit" class="button">Créer</button>
+  </div>
+  <div class="control">
+    <button type="reset" class="button ">Effacer</button>
+  </div>
+</div>
+  </form>
+</template>
+
+
     <div class="modal" slot="pkm_detail">
       <div class="modal-background close"></div>
       <div class="modal-card">

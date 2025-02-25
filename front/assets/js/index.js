@@ -1,10 +1,11 @@
 import pokeHandler from "./home.js";
 import type from "./types.js";
 import team from "./teams.js";
+import addTeam from "./addTeam.js";
 
 const menu = {
   init() {
-    team.display(), menu.home(), menu.type(), menu.team();
+    addTeam.init(), menu.home(), menu.type(), menu.team(), menu.addTeam();
   },
 
   erase() {
@@ -32,6 +33,14 @@ const menu = {
     function toTeam() {
       menu.erase();
       team.display();
+    }
+  },
+  addTeam() {
+    const homeElm = document.querySelector("#nav-item-add-team");
+    homeElm.addEventListener("click", toAddTeam);
+    function toAddTeam() {
+      menu.erase();
+      addTeam.init();
     }
   },
 };
