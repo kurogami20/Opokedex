@@ -1,9 +1,11 @@
 import pokeFetcher from "./service/pokemon.js";
 import teamFetcher from "./service/team.js";
+import teamPoke from "./service/teamPoke.js";
 
 const pokeHandler = {
   init() {
     pokeHandler.displayAll();
+    pokeHandler.postTeamPoke();
   },
 
   async displayAll() {
@@ -53,6 +55,8 @@ const pokeHandler = {
       detailContainer.querySelector(".def-spe_progress").value = poke.def_spe;
       detailContainer.querySelector(".spd_progress").value = poke.speed;
       detailContainer.classList.add("is-active");
+      const idPoke = detailContainer.querySelector("#pokemon_id");
+      idPoke.value = `${poke.id}`;
     }
 
     const detailContainer = document.querySelector('[slot="pkm_detail"]');
@@ -79,6 +83,31 @@ const pokeHandler = {
         detailContainer.classList.remove("is-active");
       });
     });
+  },
+
+  async postTeamPoke() {
+    const form = document.querySelector("#form_add_pkm_team");
+    form.addEventListener("submit", newTeam);
+    async function newTeam(event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const formData = Object.fromEntries(data);
+
+      if (formData.team_id === "Choisissez une équipe") {
+        return;
+      }
+
+      const numbData = {
+        pokemon_id: Number.parseInt(formData.pokemon_id),
+        team_id: Number.parseInt(formData.team_id),
+      };
+      const detail = document.querySelector('[slot="pkm_detail"]');
+      detail.classList.remove("is-active");
+      console.log(numbData);
+      await teamPoke.addPokeTeam(numbData);
+
+      event.currentTarget.reset();
+    }
   },
 };
 export default pokeHandler;
