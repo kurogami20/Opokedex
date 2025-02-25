@@ -2,7 +2,7 @@ import express from "express";
 import pokemon from "./controllers/pokemon.js";
 import type from "./controllers/types.js";
 import team from "./controllers/team.js";
-
+import teamPokemon from "./controllers/teamPokemon.js";
 const router = express.Router();
 
 function pokemonRoute() {
@@ -22,6 +22,8 @@ function teamRoute() {
   router.patch("/api/v1/team/:id", team.mod);
   router.delete("/api/v1/team/:id", team.del);
 }
+
+router.post("/api/v1/teamPoke", teamPokemon);
 
 teamRoute();
 typeRoute();

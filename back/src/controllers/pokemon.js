@@ -1,4 +1,4 @@
-import { Pokemon } from "../models/index.js";
+import { Pokemon, Team_pokemon } from "../models/index.js";
 
 const pokemon = {
   async getAll(req, res) {
