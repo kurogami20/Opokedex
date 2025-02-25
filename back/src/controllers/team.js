@@ -38,5 +38,10 @@ const team = {
 
     await Team.update(verif, { where: { id: id } });
   },
+  async del(req, res) {
+    const id = Number.parseInt(req.params.id);
+
+    await Team.destroy({ where: { id: id } });
+  },
 };
 export default team;
