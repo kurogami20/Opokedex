@@ -18,6 +18,7 @@ function typeRoute() {
 function teamRoute() {
   router.get("/api/v1/team", team.getAll);
   router.get("/api/v1/team/:id", team.getById);
+  router.post("/api/v1/team", team.add);
 }
 
 teamRoute();
