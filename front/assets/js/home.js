@@ -1,4 +1,5 @@
 import pokeFetcher from "./service/pokemon.js";
+import teamFetcher from "./service/team.js";
 
 const pokeHandler = {
   init() {
@@ -21,12 +22,24 @@ const pokeHandler = {
       imgElm.src = `./assets/img/${poke.id}.webp`;
       const containerElm = pokeTemplateFrag.querySelector(".card");
       containerElm.dataset.id = poke.id;
-      // * les details du pokémone
 
-      const detailContainer = pokeTemplateFrag.querySelector(
-        '[slot="pkm_detail"]'
-      );
+      return pokeTemplateFrag;
+    }
+
+    allPokemon.forEach((poke) => {
+      pokeContainerElm.appendChild(createPoke(poke));
+    });
+
+    const allPokeCard = document.querySelectorAll(".card");
+    allPokeCard.forEach((poke) => {
+      poke.addEventListener("click", modalDisplay);
+    });
+    async function modalDisplay(event) {
+      const detailContainer = document.querySelector('[slot="pkm_detail"]');
       const nameDetail = detailContainer.querySelector(".pkm_name");
+      const id = event.currentTarget.dataset.id;
+      const poke = await pokeFetcher.byIdPoke(id);
+
       nameDetail.textContent = `${poke.name}`;
       detailContainer.querySelector(
         ".pkm_img_modal"
@@ -39,49 +52,32 @@ const pokeHandler = {
       detailContainer.querySelector(".atk-spe_progress").value = poke.atk_spe;
       detailContainer.querySelector(".def-spe_progress").value = poke.def_spe;
       detailContainer.querySelector(".spd_progress").value = poke.speed;
-
-      return pokeTemplateFrag;
+      detailContainer.classList.add("is-active");
     }
 
-    allPokemon.forEach((poke) => {
-      pokeContainerElm.appendChild(createPoke(poke));
+    const detailContainer = document.querySelector('[slot="pkm_detail"]');
+
+    // les options
+    const selectElm = detailContainer.querySelector(".select");
+    const allTeams = await teamFetcher.allteam();
+
+    //
+    const optionElm = document.createElement("option");
+
+    optionElm.textContent = "Choisissez une équipe";
+    selectElm.appendChild(optionElm);
+    allTeams.forEach((t) => {
+      const optionElm = document.createElement("option");
+      optionElm.textContent = `${t.name}`;
+      optionElm.value = `${t.id}`;
+      selectElm.appendChild(optionElm);
     });
 
-    // const allPoke = document.querySelectorAll(".card");
-    // allPoke.forEach((poke) => {
-    //   poke.addEventListener("click", pokeModale);
-    //   const detailCard = poke.querySelector('div[slot="pkm_detail"]');
-
-    //   const closeElms = detailCard.querySelectorAll(".close");
-
-    //   closeElms.forEach((p) => {
-    //     p.addEventListener("click", () => {
-    //       console.log("hello");
-    //       detailCard.classList.remove("is-active");
-    //     });
-    //   });
-    // });
-
-    // function pokeModale(event) {
-    //   const detail = event.currentTarget.querySelector('[slot="pkm_detail"]');
-    //   detail.classList.add("is-active");
-    //   return;
-    // }
-
-    document.addEventListener("click", (event) => {
-      // Vérifier si on clique sur une carte
-      if (event.target.closest(".card")) {
-        const poke = event.target.closest(".card");
-        const detail = poke.querySelector('[slot="pkm_detail"]');
-        detail.classList.add("is-active");
-      }
-      if (event.target.classList.contains("close")) {
-        console.log("Fermeture demandée !");
-        const detailCard = event.target.closest('[slot="pkm_detail"]');
-        if (detailCard) {
-          detailCard.classList.remove("is-active");
-        }
-      }
+    const closeElm = document.querySelectorAll(".close");
+    closeElm.forEach((c) => {
+      c.addEventListener("click", () => {
+        detailContainer.classList.remove("is-active");
+      });
     });
   },
 };
