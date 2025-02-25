@@ -36,6 +36,7 @@ const addTeam = {
         throw new Error(error);
       }
       await team.addTeam(dataContent);
+
       event.currentTarget.reset();
     });
   },

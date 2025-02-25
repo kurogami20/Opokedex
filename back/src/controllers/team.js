@@ -26,5 +26,17 @@ const team = {
 
     await Team.create(verif);
   },
+  async mod(req, res) {
+    const addSchema = z.object({
+      name: z.string().optional(),
+      description: z.string().optional(),
+    });
+    const id = Number.parseInt(req.params.id);
+    const data = req.body;
+
+    const verif = addSchema.parse(data);
+
+    await Team.update(verif, { where: { id: id } });
+  },
 };
 export default team;
