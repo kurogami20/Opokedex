@@ -50,7 +50,9 @@ const team = {
       });
       async function modale(event) {
         const modale = document.querySelector('[slot="team_mod"]');
+
         const id = event.currentTarget.dataset.id;
+        modale.dataset.id = id;
         const teamData = await teamFetcher.byIdteam(id);
         modale.querySelector(".team_name").textContent = `${teamData.name}`;
         modale.querySelector(".team_name").insertAdjacentHTML(
@@ -64,7 +66,18 @@ const team = {
         modale.querySelector(
           '[slot="description"]'
         ).textContent = `${teamData.description}`;
+        displayModalContent();
+        modale.classList.add("is-active");
+      }
 
+      const modal = document.querySelector('[slot="team_mod"]');
+      const closeElm = modal.querySelectorAll(".close");
+      closeElm.forEach((c) => {
+        c.addEventListener("click", () => {
+          modal.classList.remove("is-active");
+        });
+      });
+      async function displayModalContent() {
         function createFormPoke(poke, team) {
           const formTemplt = document.querySelector("#modTeam_pok");
           const formFrag = formTemplt.content.cloneNode(true);
@@ -83,23 +96,27 @@ const team = {
           return formFrag;
         }
 
-        const main = modale.querySelector(".modal-card-body");
+        const team = document.querySelectorAll(".team_container");
+        console.log(team);
+        const id = Number.parseInt(
+          document.querySelector('[slot="team_mod"]').dataset.id
+        );
+
+        const modale = document.querySelector('[slot="team_mod"]');
+        const main = modale.querySelector('[slot="poke_section"]');
+        console.log(main);
+        main.innerHTML = "";
+        console.log(id);
+        const teamData = await teamFetcher.byIdteam(id);
         const pokemons = teamData.pokemon;
+        console.log(pokemons);
 
         pokemons.forEach((p) => {
-          main.appendChild(createFormPoke(p, teamData));
+          main.append(createFormPoke(p, teamData));
         });
-        team.handleModTeam();
-        modale.classList.add("is-active");
-      }
 
-      const modal = document.querySelector('[slot="team_mod"]');
-      const closeElm = modal.querySelectorAll(".close");
-      closeElm.forEach((c) => {
-        c.addEventListener("click", () => {
-          modal.classList.remove("is-active");
-        });
-      });
+        // team.handleModTeam();
+      }
     }, 1000);
   },
   async handleModTeam() {
