@@ -1,9 +1,9 @@
 import teamFetcher from "./service/team.js";
 import teamPoke from "./service/teamPoke.js";
 
-const team = {
+const teamHandler = {
   init() {
-    team.display(), team.displayModTeame();
+    teamHandler.display(), teamHandler.displayModTeame();
   },
 
   async display() {
@@ -29,6 +29,7 @@ const team = {
         const figElm = document.createElement("figure");
         const imgElm = document.createElement("img");
         figElm.classList.add("image", "is-64x64", "mx-2");
+        figElm.dataset.id = `${pok.id}${team.id}`;
         imgElm.classList.add("is-rounded");
         imgElm.src = `./assets/img/${pok.id}.webp`;
         imgContainer.appendChild(figElm);
@@ -115,7 +116,7 @@ const team = {
           main.append(createFormPoke(p, teamData));
         });
 
-        // team.handleModTeam();
+        teamHandler.handleModTeam();
       }
     }, 1000);
   },
@@ -134,10 +135,12 @@ const team = {
         team_id: Number.parseInt(team_id),
       };
       console.log(data);
-      // await teamPoke.deletePokeTeam(data);
       event.currentTarget.remove();
+      document.querySelector(`[data-id="${pokemon_id}${team_id}"]`).remove();
+
+      // await teamPoke.deletePokeTeam(data);
     }
   },
 };
 
-export default team;
+export default teamHandler;
