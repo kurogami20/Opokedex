@@ -3,7 +3,7 @@ import teamPoke from "./service/teamPoke.js";
 
 const team = {
   init() {
-    team.display(), team.displayModTeame(), team.handleModTeam();
+    team.display(), team.displayModTeame();
   },
 
   async display() {
@@ -53,16 +53,24 @@ const team = {
         const id = event.currentTarget.dataset.id;
         const teamData = await teamFetcher.byIdteam(id);
         modale.querySelector(".team_name").textContent = `${teamData.name}`;
+        modale.querySelector(".team_name").insertAdjacentHTML(
+          "beforeend",
+          `<i class="fa-solid fa-pen is-clickable "></i>
+          `
+        );
+        const formNameElm = modale.querySelector('[slot="change_name_team"]');
+        const input = formNameElm.querySelector(".input");
+        input.value = `${teamData.name}`;
         modale.querySelector(
           '[slot="description"]'
         ).textContent = `${teamData.description}`;
 
         function createFormPoke(poke, team) {
-          const formTemplt = modale.querySelector("#modTeam_pok");
+          const formTemplt = document.querySelector("#modTeam_pok");
           const formFrag = formTemplt.content.cloneNode(true);
           const img = formFrag.querySelector(".poke_img");
           img.src = `./assets/img/${poke.id}.webp`;
-          formFrag.querySelector(".poke_name").textContent = `${poke.name}`;
+          formFrag.querySelector(".poke_name").textContent = `${poke.name} `;
           formFrag.querySelector('[slot="pokemon_id"]').value = `${poke.id}`;
           formFrag.querySelector('[slot="team_id"]').value = `${team.id}`;
           // les statistiques
@@ -81,7 +89,7 @@ const team = {
         pokemons.forEach((p) => {
           main.appendChild(createFormPoke(p, teamData));
         });
-
+        team.handleModTeam();
         modale.classList.add("is-active");
       }
 
@@ -95,12 +103,23 @@ const team = {
     }, 1000);
   },
   async handleModTeam() {
-    setTimeout(() => {
-      const formsPokeTeam = document.querySelector('[slot="poke_team_form"]');
-      console.log(formsPokeTeam);
-
-      async function sendData() {}
-    }, 1000);
+    const formsPokeTeam = document.querySelectorAll('[slot="poke_team_form"]');
+    console.log(formsPokeTeam);
+    formsPokeTeam.forEach((f) => {
+      f.addEventListener("submit", sendData);
+    });
+    async function sendData(event) {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const { pokemon_id, team_id } = Object.fromEntries(formData);
+      const data = {
+        pokemon_id: Number.parseInt(pokemon_id),
+        team_id: Number.parseInt(team_id),
+      };
+      console.log(data);
+      // await teamPoke.deletePokeTeam(data);
+      event.currentTarget.remove();
+    }
   },
 };
 

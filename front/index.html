@@ -107,7 +107,90 @@
 </div>
   </form>
 </template>
-
+   <template id="modTeam_pok">
+          <form action="" slot="poke_team_form"  >
+ <div class="field">
+  <figure class="image is-64x64 mx-2">
+    <img src="" alt="" class="image is-64x64 mx-2 poke_img">
+  </figure>
+  <label class="label poke_name"></label>
+    <div class="modal-card-content pkm_stats_modal">
+            <h4 class="mb-4">Statistiques:</h4>
+            
+            <div>
+              <div class="is-flex is-justify-content-space-start">
+                <div class="">PV:</div>
+                <div class="pokemon-hp ml-1"></div>
+              </div>
+              <progress
+                class="progress is-danger pv_progress"
+                value="50"
+                max="255"
+              ></progress>
+            </div>
+            <div class="row">
+              <div class="is-flex is-justify-content-space-start">
+                <div class="">Attaque:</div>
+                <div class="pokemon-atk ml-1"></div>
+              </div>
+              <progress
+                class="progress is-danger atk_progress"
+                value="70"
+                max="255"
+              ></progress>
+            </div>
+            <div class="row">
+              <div class="is-flex is-justify-content-space-start">
+                <div class="">Défense:</div>
+                <div class="pokemon-def ml-1"></div>
+              </div>
+              <progress
+                class="progress is-danger def_progress"
+                value="90"
+                max="255"
+              ></progress>
+            </div>
+            <div class="row">
+              <div class="is-flex is-justify-content-space-start">
+                <div class="">Attaque Spé:</div>
+                <div class="pokemon-atk_spe ml-1"></div>
+              </div>
+              <progress
+                class="progress is-danger atk-spe_progress"
+                value="110"
+                max="255"
+              ></progress>
+            </div>
+            <div class="row">
+              <div class="is-flex is-justify-content-space-start">
+                <div class="">Défense Spé:</div>
+                <div class="pokemon-def_spe ml-1"></div>
+              </div>
+              <progress
+                class="progress is-danger def-spe_progress"
+                value="130"
+                max="255"
+              ></progress>
+            </div>
+            <div class="row">
+              <div class="is-flex is-justify-content-space-start">
+                <div class="">Vitesse:</div>
+                <div class="pokemon-speed ml-1"></div>
+              </div>
+              <progress
+                class="progress is-danger spd_progress"
+                value="150"
+                max="255"
+              ></progress>
+            </div>
+          </div>
+  <div class="control">
+    <input class="input" type="hidden" slot="pokemon_id" name="pokemon_id">
+  <input class="input" type="hidden" slot="team_id" name="team_id">
+  </div>
+<button type="submit" title="supprimer"  ><i class="fa-solid fa-trash content is-large has-text-danger mt-4 mb-4 has-text-right"></i></button>
+</form>
+         </template>
 
     <div class="modal" slot="pkm_detail">
       <div class="modal-background close"></div>
@@ -225,96 +308,19 @@
      <div class="modal" slot="team_mod">
       <div class="modal-background close"></div>
       <div class="modal-card">
-        <header class="modal-card-head">
-          <h2 class="modal-card-title team_name"></h2>
+        <header class="modal-card-head is-flex  is-justify-content-space-between">
+          <h2 class="modal-card-title team_name ">
+          </h2>
+         <form action="" slot="change_name_team" class="is-hidden">
+            <div class="control">
+    <input class="input" type="text" name="name">
+  </div>
+  </form>
           <i class="fa fa-window-close close is-clickable"></i>
         </header>
         <main class="modal-card-body">
          <em slot="description"></em>
-         <template id="modTeam_pok">
-          <form action="" slot="poke_team_form">
- <div class="field">
-  <figure class="image is-64x64 mx-2">
-    <img src="" alt="" class="image is-64x64 mx-2 poke_img">
-  </figure>
-  <label class="label poke_name"></label>
-    <div class="modal-card-content pkm_stats_modal">
-            <h4 class="mb-4">Statistiques:</h4>
-            
-            <div>
-              <div class="is-flex is-justify-content-space-start">
-                <div class="">PV:</div>
-                <div class="pokemon-hp ml-1"></div>
-              </div>
-              <progress
-                class="progress is-danger pv_progress"
-                value="50"
-                max="255"
-              ></progress>
-            </div>
-            <div class="row">
-              <div class="is-flex is-justify-content-space-start">
-                <div class="">Attaque:</div>
-                <div class="pokemon-atk ml-1"></div>
-              </div>
-              <progress
-                class="progress is-danger atk_progress"
-                value="70"
-                max="255"
-              ></progress>
-            </div>
-            <div class="row">
-              <div class="is-flex is-justify-content-space-start">
-                <div class="">Défense:</div>
-                <div class="pokemon-def ml-1"></div>
-              </div>
-              <progress
-                class="progress is-danger def_progress"
-                value="90"
-                max="255"
-              ></progress>
-            </div>
-            <div class="row">
-              <div class="is-flex is-justify-content-space-start">
-                <div class="">Attaque Spé:</div>
-                <div class="pokemon-atk_spe ml-1"></div>
-              </div>
-              <progress
-                class="progress is-danger atk-spe_progress"
-                value="110"
-                max="255"
-              ></progress>
-            </div>
-            <div class="row">
-              <div class="is-flex is-justify-content-space-start">
-                <div class="">Défense Spé:</div>
-                <div class="pokemon-def_spe ml-1"></div>
-              </div>
-              <progress
-                class="progress is-danger def-spe_progress"
-                value="130"
-                max="255"
-              ></progress>
-            </div>
-            <div class="row">
-              <div class="is-flex is-justify-content-space-start">
-                <div class="">Vitesse:</div>
-                <div class="pokemon-speed ml-1"></div>
-              </div>
-              <progress
-                class="progress is-danger spd_progress"
-                value="150"
-                max="255"
-              ></progress>
-            </div>
-          </div>
-  <div class="control">
-    <input class="input" type="hidden" slot="pokemon_id" name="pokemon_id">
-  <input class="input" type="hidden" slot="team_id" name="team_id">
-  </div>
-<button type="submit" title="supprimer"><i class="fa-solid fa-trash"></i></button>
-</form>
-         </template>
+      
         </main>
       </div>
     </div>
