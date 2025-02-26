@@ -3,7 +3,9 @@ import teamPoke from "./service/teamPoke.js";
 
 const teamHandler = {
   init() {
-    teamHandler.display(), teamHandler.displayModTeame();
+    teamHandler.display(),
+      teamHandler.displayModTeame(),
+      teamHandler.modTeamName();
   },
 
   async display() {
@@ -56,11 +58,7 @@ const teamHandler = {
         modale.dataset.id = id;
         const teamData = await teamFetcher.byIdteam(id);
         modale.querySelector(".team_name").textContent = `${teamData.name}`;
-        modale.querySelector(".team_name").insertAdjacentHTML(
-          "beforeend",
-          `<i class="fa-solid fa-pen is-clickable "></i>
-          `
-        );
+
         const formNameElm = modale.querySelector('[slot="change_name_team"]');
         const input = formNameElm.querySelector(".input");
         input.value = `${teamData.name}`;
@@ -76,6 +74,10 @@ const teamHandler = {
       closeElm.forEach((c) => {
         c.addEventListener("click", () => {
           modal.classList.remove("is-active");
+          const titleElm = document.querySelector(".title_zone");
+          const formElm = document.querySelector('[slot="change_name_team"]');
+          titleElm.classList.remove("is-hidden");
+          formElm.classList.add("is-hidden");
         });
       });
       async function displayModalContent() {
@@ -139,6 +141,20 @@ const teamHandler = {
       document.querySelector(`[data-id="${pokemon_id}${team_id}"]`).remove();
 
       await teamPoke.deletePokeTeam(data);
+    }
+  },
+
+  async modTeamName() {
+    const penElms = document.querySelector(".pen");
+
+    penElms.addEventListener("click", displayForm);
+
+    function displayForm() {
+      console.log("click");
+      const titleElm = document.querySelector(".title_zone");
+      const formElm = document.querySelector('[slot="change_name_team"]');
+      titleElm.classList.add("is-hidden");
+      formElm.classList.remove("is-hidden");
     }
   },
 };
