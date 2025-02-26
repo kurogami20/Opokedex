@@ -58,7 +58,7 @@ const teamHandler = {
         modale.dataset.id = id;
         const teamData = await teamFetcher.byIdteam(id);
         modale.querySelector(".team_name").textContent = `${teamData.name}`;
-
+        modale.querySelector(".del_team").value = `${id}`;
         const formNameElm = modale.querySelector('[slot="change_name_team"]');
         const input = formNameElm.querySelector(".input");
         input.value = `${teamData.name}`;

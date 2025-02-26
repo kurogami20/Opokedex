@@ -312,6 +312,7 @@
           <h2 class="modal-card-title title_zone">
             <span class=" team_name"></span>
             <i class="fa-solid fa-pen is-clickable pen"></i>
+         
           </h2>
          <form action="" slot="change_name_team" class="is-hidden">
             <div class="control">
@@ -324,6 +325,12 @@
          <em slot="description"></em>
         <div slot="poke_section"></div>
         </main>
+        <footer class="modal-card-foot is-flex is-justify-content-right">
+          <form action="">
+            <input type="hidden" class="del_team">
+            <input class="input is-danger is-clickable" type="submit" value="supprimer la team" slot="sub_del_team">
+          </form>
+        </footer>
       </div>
     </div>
     <script type="module" src="./assets/js/index.js"></script>
