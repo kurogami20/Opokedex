@@ -138,7 +138,7 @@ const teamHandler = {
       event.currentTarget.remove();
       document.querySelector(`[data-id="${pokemon_id}${team_id}"]`).remove();
 
-      // await teamPoke.deletePokeTeam(data);
+      await teamPoke.deletePokeTeam(data);
     }
   },
 };
