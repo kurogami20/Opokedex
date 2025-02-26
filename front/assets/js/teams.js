@@ -1,8 +1,9 @@
 import teamFetcher from "./service/team.js";
+import teamPoke from "./service/teamPoke.js";
 
 const team = {
   init() {
-    team.display(), team.modTeame();
+    team.display(), team.displayModTeame(), team.handleModTeam();
   },
 
   async display() {
@@ -33,6 +34,7 @@ const team = {
         imgContainer.appendChild(figElm);
         figElm.appendChild(imgElm);
       });
+
       return teamFrag;
     }
 
@@ -40,7 +42,7 @@ const team = {
       main.appendChild(create(a));
     });
   },
-  async modTeame() {
+  async displayModTeame() {
     setTimeout(() => {
       const containers = document.querySelectorAll(".team_container");
       containers.forEach((c) => {
@@ -54,8 +56,50 @@ const team = {
         modale.querySelector(
           '[slot="description"]'
         ).textContent = `${teamData.description}`;
+
+        function createFormPoke(poke, team) {
+          const formTemplt = modale.querySelector("#modTeam_pok");
+          const formFrag = formTemplt.content.cloneNode(true);
+          const img = formFrag.querySelector(".poke_img");
+          img.src = `./assets/img/${poke.id}.webp`;
+          formFrag.querySelector(".poke_name").textContent = `${poke.name}`;
+          formFrag.querySelector('[slot="pokemon_id"]').value = `${poke.id}`;
+          formFrag.querySelector('[slot="team_id"]').value = `${team.id}`;
+          // les statistiques
+          formFrag.querySelector(".pv_progress").value = poke.hp;
+          formFrag.querySelector(".atk_progress").value = poke.atk;
+          formFrag.querySelector(".def_progress").value = poke.def;
+          formFrag.querySelector(".atk-spe_progress").value = poke.atk_spe;
+          formFrag.querySelector(".def-spe_progress").value = poke.def_spe;
+          formFrag.querySelector(".spd_progress").value = poke.speed;
+          return formFrag;
+        }
+
+        const main = modale.querySelector(".modal-card-body");
+        const pokemons = teamData.pokemon;
+
+        pokemons.forEach((p) => {
+          main.appendChild(createFormPoke(p, teamData));
+        });
+
         modale.classList.add("is-active");
       }
+
+      const modal = document.querySelector('[slot="team_mod"]');
+      const closeElm = modal.querySelectorAll(".close");
+      closeElm.forEach((c) => {
+        c.addEventListener("click", () => {
+          modal.classList.remove("is-active");
+        });
+      });
+    }, 1000);
+  },
+  async handleModTeam() {
+    setTimeout(() => {
+      const formsPokeTeam = document.querySelector('[slot="poke_team_form"]');
+      console.log(formsPokeTeam);
+
+      async function sendData() {}
     }, 1000);
   },
 };
