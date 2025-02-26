@@ -22,9 +22,12 @@ function teamRoute() {
   router.patch("/api/v1/team/:id", team.mod);
   router.delete("/api/v1/team/:id", team.del);
 }
+function teamPokemons() {
+  router.post("/api/v1/teamPoke", teamPokemon.post);
+  router.delete("/api/v1/teamPoke", teamPokemon.del);
+}
 
-router.post("/api/v1/teamPoke", teamPokemon);
-
+teamPokemons();
 teamRoute();
 typeRoute();
 pokemonRoute();

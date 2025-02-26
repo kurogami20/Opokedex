@@ -22,7 +22,7 @@ const pokeHandler = {
       const imgElm = pokeTemplateFrag.querySelector(".pkm_img");
       titleElm.textContent = `${poke.name}`;
       imgElm.src = `./assets/img/${poke.id}.webp`;
-      const containerElm = pokeTemplateFrag.querySelector(".card");
+      const containerElm = pokeTemplateFrag.querySelector(".pokemon");
       containerElm.dataset.id = poke.id;
 
       return pokeTemplateFrag;
@@ -32,7 +32,7 @@ const pokeHandler = {
       pokeContainerElm.appendChild(createPoke(poke));
     });
 
-    const allPokeCard = document.querySelectorAll(".card");
+    const allPokeCard = document.querySelectorAll(".pokemon");
     allPokeCard.forEach((poke) => {
       poke.addEventListener("click", modalDisplay);
     });

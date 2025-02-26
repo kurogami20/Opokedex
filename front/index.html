@@ -49,7 +49,7 @@
     ></main>
 
     <template id="pokemon_template">
-      <div class="card mb-6 has-text-centered pt-4 my-6">
+      <div class="card mb-6 has-text-centered pt-4 my-6 pokemon">
         <a>
           <div class="card-image">
             <img class="pkm_img" />
@@ -65,9 +65,9 @@
     </template>
 
     <template id="team_template">
-      <section class="container has-text-centered my-6">
+      <section class="container has-text-centered my-6 is-clickable team_container">
         <div class="mb-1">
-          <h2 class="team-name title"></h2>
+          <h2 class="team-name title "></h2>
           <p class="team-description subtitle my-5"></p>
         </div>
 
@@ -219,6 +219,25 @@
         <main class="modal-card-body">
           <h3 class="mb-4 title">On retrouve</h3>
           <ul class="ul list_poke_type"></ul>
+        </main>
+      </div>
+    </div>
+     <div class="modal" slot="team_mod">
+      <div class="modal-background close"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <h2 class="modal-card-title team_name"></h2>
+          <i class="fa fa-window-close close is-clickable"></i>
+        </header>
+        <main class="modal-card-body">
+         <em slot="description"></em>
+         <template id="modTeam_pok">
+ <div class="field">
+  <label class="label">Nom de l'équipe</label>
+  <div class="control">
+    <input class="input" type="hidden" name="id">
+  </div>
+         </template>
         </main>
       </div>
     </div>
