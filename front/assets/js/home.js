@@ -75,6 +75,7 @@ const pokeHandler = {
 
     // les options
     const selectElm = detailContainer.querySelector(".select");
+    selectElm.innerHTML = "";
     const allTeams = await teamFetcher.allteam();
 
     //
