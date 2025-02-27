@@ -6,6 +6,7 @@ const teamHandler = {
     teamHandler.display(),
       teamHandler.displayModTeame(),
       teamHandler.modTeamName();
+    teamHandler.delTeam();
   },
 
   async display() {
@@ -178,13 +179,33 @@ const teamHandler = {
       const form = event.currentTarget;
       const dataSent = new FormData(form);
       const object = Object.fromEntries(dataSent);
-      console.log(object);
-      await teamFetcher.modTeam(object);
       document.querySelector(".team_name").textContent = `${object.name}`;
       const titleElm = document.querySelector(".title_zone");
       const formElm = document.querySelector('[slot="change_name_team"]');
       titleElm.classList.remove("is-hidden");
       formElm.classList.add("is-hidden");
+      await teamFetcher.modTeam(object);
+    }
+    const closeForm = form.querySelector(".close_title_mod");
+    closeForm.addEventListener("click", () => {
+      const titleElm = document.querySelector(".title_zone");
+      const formElm = document.querySelector('[slot="change_name_team"]');
+      titleElm.classList.remove("is-hidden");
+      formElm.classList.add("is-hidden");
+    });
+  },
+
+  async delTeam() {
+    const form = document.querySelector("#del_team_form");
+
+    form.addEventListener("submit", deleteTeam);
+    async function deleteTeam(event) {
+      event.preventDefault();
+      const dataSent = new FormData(form);
+      const { id } = Object.fromEntries(dataSent);
+      document.querySelector('[slot="team_mod"]').classList.remove("is-active");
+      document.querySelector(`[data-id="${id}"]`).remove();
+      await teamFetcher.deleteTeam(id);
     }
   },
 };

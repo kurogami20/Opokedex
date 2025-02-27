@@ -322,17 +322,22 @@
          <form action="" slot="change_name_team" class=" is-hidden ">
             <div class="control">
               <input type="hidden" name="id" class="id_team">
-    <input class="input" type="text" name="name"><i class="fa-solid fa-xmark"></i>
-  </div>
+              <p class="control has-icons-right">
+    <input class="input" type="text" name="name">
+        <span class="icon is-small is-right">
+    <i class="fa-solid fa-xmark is-clickable close_title_mod"></i>
+  </span>
+ </p>
+ </div>
   </form>
-          <i class="fa fa-window-close close is-clickable"></i>
+          <i class="fa fa-window-close close is-clickable "></i>
         </header>
         <main class="modal-card-body">
          <em slot="description"></em>
         <div slot="poke_section"></div>
         </main>
         <footer class="modal-card-foot is-flex is-justify-content-right">
-          <form action="">
+          <form action="" id="del_team_form">
             <input type="hidden" name="id" class="id_team">
             <input class="input is-danger is-clickable" type="submit" value="supprimer la team" slot="sub_del_team">
           </form>
