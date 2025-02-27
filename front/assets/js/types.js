@@ -7,6 +7,7 @@ const type = {
 
   async display() {
     const allType = await typeFetcher.allType();
+
     function create(type) {
       const typeFrag = document
         .querySelector("#type_template")
@@ -39,12 +40,24 @@ const type = {
         console.log(typeById);
         const modale = document.querySelector('[slot="type_detail"]');
         const title = modale.querySelector(".type_name");
+        const imgElm = modale.querySelector(".poke_img");
         title.textContent = `${typeById.name}`;
+
         const list = modale.querySelector(".list_poke_type");
         const pokemon = typeById.pokemon;
         pokemon.forEach((pok) => {
+          const figureElm = document.createElement("figure");
+          const imgElm = document.createElement("img");
+          figureElm.classList.add("image", "is-64x64", "mx-2");
+          imgElm.classList.add("image", "is-64x64", "mx-2", "poke_img");
+          imgElm.src = `./assets/img/${pok.id}.webp`;
+          figureElm.appendChild(imgElm);
+
           const liElm = document.createElement("li");
-          liElm.textContent = `${pok.name}`;
+          liElm.textContent = `  ${pok.name}`;
+
+          liElm.prepend(figureElm);
+          liElm.classList.add("is-flex", "is-size-3", "ml-3");
           list.appendChild(liElm);
         });
         modale.classList.add("is-active");

@@ -47,6 +47,18 @@ const pokeHandler = {
         ".pkm_img_modal"
       ).src = `./assets/img/${poke.id}.webp`;
 
+      const spanTypeElm = detailContainer.querySelector(".modal_poke_type");
+      spanTypeElm.textContent = "";
+      const types = poke.type;
+      types.forEach((t) => {
+        const typeBtnElm = document.createElement("button");
+        typeBtnElm.classList.add("button");
+        typeBtnElm.style.backgroundColor = `#${t.color}`;
+        typeBtnElm.textContent = `${t.name}`;
+        spanTypeElm.appendChild(typeBtnElm);
+      });
+
+      console.log(types);
       // les statistiques
       detailContainer.querySelector(".pv_progress").value = poke.hp;
       detailContainer.querySelector(".atk_progress").value = poke.atk;

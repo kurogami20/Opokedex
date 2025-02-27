@@ -58,7 +58,10 @@ const teamHandler = {
         modale.dataset.id = id;
         const teamData = await teamFetcher.byIdteam(id);
         modale.querySelector(".team_name").textContent = `${teamData.name}`;
-        modale.querySelector(".del_team").value = `${id}`;
+        const id_team = modale.querySelectorAll(".id_team");
+        id_team.forEach((t) => {
+          t.value = `${id}`;
+        });
         const formNameElm = modale.querySelector('[slot="change_name_team"]');
         const input = formNameElm.querySelector(".input");
         input.value = `${teamData.name}`;
@@ -89,6 +92,18 @@ const teamHandler = {
           formFrag.querySelector(".poke_name").textContent = `${poke.name} `;
           formFrag.querySelector('[slot="pokemon_id"]').value = `${poke.id}`;
           formFrag.querySelector('[slot="team_id"]').value = `${team.id}`;
+
+          const spanTypeElm = formFrag.querySelector(".modal_poke_type");
+          spanTypeElm.textContent = "";
+          const types = poke.type;
+          types.forEach((t) => {
+            const typeBtnElm = document.createElement("button");
+            typeBtnElm.classList.add("button");
+            typeBtnElm.style.backgroundColor = `#${t.color}`;
+            typeBtnElm.textContent = `${t.name}`;
+            spanTypeElm.appendChild(typeBtnElm);
+          });
+
           // les statistiques
           formFrag.querySelector(".pv_progress").value = poke.hp;
           formFrag.querySelector(".atk_progress").value = poke.atk;
@@ -155,6 +170,21 @@ const teamHandler = {
       const formElm = document.querySelector('[slot="change_name_team"]');
       titleElm.classList.add("is-hidden");
       formElm.classList.remove("is-hidden");
+    }
+    const form = document.querySelector('[slot="change_name_team"]');
+    form.addEventListener("submit", sendData);
+    async function sendData(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const dataSent = new FormData(form);
+      const object = Object.fromEntries(dataSent);
+      console.log(object);
+      await teamFetcher.modTeam(object);
+      document.querySelector(".team_name").textContent = `${object.name}`;
+      const titleElm = document.querySelector(".title_zone");
+      const formElm = document.querySelector('[slot="change_name_team"]');
+      titleElm.classList.remove("is-hidden");
+      formElm.classList.add("is-hidden");
     }
   },
 };

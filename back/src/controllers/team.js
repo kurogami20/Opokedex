@@ -11,7 +11,7 @@ const team = {
   async getById(req, res) {
     const id = req.params.id;
     const team = await Team.findByPk(id, {
-      include: [{ association: "pokemon" }],
+      include: [{ association: "pokemon", include: [{ association: "type" }] }],
     });
     res.json(team);
   },

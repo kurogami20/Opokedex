@@ -5,7 +5,7 @@ import addTeam from "./addTeam.js";
 
 const menu = {
   init() {
-    team.init(), menu.home(), menu.type(), menu.team(), menu.addTeam();
+    pokeHandler.init(), menu.home(), menu.type(), menu.team(), menu.addTeam();
   },
 
   erase() {
@@ -16,7 +16,7 @@ const menu = {
     homeElm.addEventListener("click", toHome);
     function toHome() {
       menu.erase();
-      return pokeHandler.init();
+      pokeHandler.init();
     }
   },
   type() {

@@ -115,7 +115,10 @@
   </figure>
   <label class="label poke_name"></label>
     <div class="modal-card-content pkm_stats_modal">
-            <h4 class="mb-4">Statistiques:</h4>
+           <div class="is-flex"><h4 class="mb-4 mr-4">Statistiques:  </h4>
+            <span class="modal_poke_type"></span></div>
+            
+            <div>
             
             <div>
               <div class="is-flex is-justify-content-space-start">
@@ -206,8 +209,9 @@
             <img class="pkm_img_modal" />
           </div>
           <div class="modal-card-content pkm_stats_modal">
-            <h4 class="mb-4">Statistiques</h4>
-            <p class="modal_team_types"></p>
+            <div class="is-flex"><h4 class="mb-4 mr-4">Statistiques:  </h4>
+            <span class="modal_poke_type"></span></div>
+            
             <div>
               <div class="is-flex is-justify-content-space-start">
                 <div class="">PV:</div>
@@ -278,16 +282,16 @@
         </section>
         <footer class="modal-card-foot is-flex">
           <div class="add_team_container">
-            <form id="form_add_pkm_team">
+            <form id="form_add_pkm_team" class="is-flex is-justify-content-space-between is-align-items-center">
               <input type="hidden" name="pokemon_id" id="pokemon_id">
               <select name="team_id" class="select"></select>
               <button type="submit" class="button btn_add_team">
-                Add To Team
-              </button>
+                Ajouter à une équipe
+              </button> <button class="button close">Retour</button>
             </form>
           </div>
           <div class="buttons">
-            <button class="button close">Retour</button>
+           
           </div>
         </footer>
       </div>
@@ -296,6 +300,7 @@
       <div class="modal-background close"></div>
       <div class="modal-card">
         <header class="modal-card-head">
+          
           <h2 class="modal-card-title type_name"></h2>
           <i class="fa fa-window-close close is-clickable"></i>
         </header>
@@ -305,7 +310,7 @@
         </main>
       </div>
     </div>
-     <div class="modal" slot="team_mod">
+     <div class="modal is-clipped" slot="team_mod">
       <div class="modal-background close"></div>
       <div class="modal-card">
         <header class="modal-card-head is-flex  is-justify-content-space-between">
@@ -314,9 +319,10 @@
             <i class="fa-solid fa-pen is-clickable pen"></i>
          
           </h2>
-         <form action="" slot="change_name_team" class="is-hidden">
+         <form action="" slot="change_name_team" class=" is-hidden ">
             <div class="control">
-    <input class="input" type="text" name="name">
+              <input type="hidden" name="id" class="id_team">
+    <input class="input" type="text" name="name"><i class="fa-solid fa-xmark"></i>
   </div>
   </form>
           <i class="fa fa-window-close close is-clickable"></i>
@@ -327,7 +333,7 @@
         </main>
         <footer class="modal-card-foot is-flex is-justify-content-right">
           <form action="">
-            <input type="hidden" class="del_team">
+            <input type="hidden" name="id" class="id_team">
             <input class="input is-danger is-clickable" type="submit" value="supprimer la team" slot="sub_del_team">
           </form>
         </footer>
